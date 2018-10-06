@@ -82,7 +82,7 @@ var sellItems = function () {
     var getProducts = function () {
         var index = 0;
         $.ajax({
-            url: "/lucasmendoncapportfolio.atwebpages.com/json/produtos.json", success: function (produtosEncontrados) {
+            url: "http://lucasmendoncapportfolio.atwebpages.com/json/produtos.json", success: function (produtosEncontrados) {
                 var produtos = produtosEncontrados["Produtos"];
                 for (var _i = 0, produtos_1 = produtos; _i < produtos_1.length; _i++) {
                     var productData = produtos_1[_i];

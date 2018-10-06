@@ -96,7 +96,7 @@ let sellItems = () => {
   let getProducts = () => {
     let index = 0;
     $.ajax({
-      url: "/lucasmendoncapportfolio.atwebpages.com/json/produtos.json", success: (produtosEncontrados) => {
+      url: "http://lucasmendoncapportfolio.atwebpages.com/json/produtos.json", success: (produtosEncontrados) => {
         let produtos: Produto[] = produtosEncontrados["Produtos"];
         for (let productData of produtos) {
           let imagem = productData.ImageSrc != '' ? productData.ImageSrc : '../images/itemdefault.png';
