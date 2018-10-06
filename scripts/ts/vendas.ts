@@ -97,7 +97,7 @@ let sellItems = () => {
     let index = 0;
     $.ajax({
       url: "/lucasmendoncapportfolio.atwebpages.com/json/produtos.json", success: (produtosEncontrados) => {
-        let produtos: Produto[] = produtosEncontrados['Produtos'];
+        let produtos: Produto[] = produtosEncontrados["Produtos"];
         for (let productData of produtos) {
           let imagem = productData.ImageSrc != '' ? productData.ImageSrc : '../images/itemdefault.png';
           let bgColor = productData.BgColor != '' ? productData.BgColor : '#fff';
@@ -251,6 +251,12 @@ let sellItems = () => {
     $('.cart-item').detach();
     mostraEscondeCarrinho();
     setTimeout(function () { $('.loading').hide(); $('.popup-sucsess-ok, .popup-sucsess-message').show(); }, 3000);
+  });
+
+  $('#cart-empty').click((e) => {
+    $('.cart-item').detach();
+    mostraEscondeCarrinho();
+    $('.cart-circle').hide();
   });
 
   $('.popup-sucsess-ok').click((e) => {
