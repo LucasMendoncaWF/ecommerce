@@ -4,21 +4,11 @@ $white: rgb(255,255,255);
 
 body {
   font-family: 'Segoe UI';
+  background-color: #f7f7f7;
 }
 
 #conteudo-compra {
   width: 100%;
-}
-
-.background {
-  width: 100%;
-  background-image: url(https://images.unsplash.com/photo-1530482817083-29ae4b92ff15?ixlib=rb-0.3.5…EyMDd9&s=44f4aeb…&auto=format&fit=crop&w=1351&q=80);
-  background-size: 100%;
-  position: absolute;
-  opacity: 0.2;
-  min-height: 800px;
-  height: -webkit-fill-available;
-  z-index: -1;
 }
 
 .botao-desabilitado {
@@ -28,7 +18,7 @@ body {
 
 .titulo-secao {
   padding: 20px;
-  background-color: #b7b7b7;
+  background-color: #54d2d2;
   color: #ffffff;
   font-size: 25px;
 }
@@ -78,6 +68,10 @@ body {
   position: relative;
   border: 1px solid #b7b7b7;
   box-shadow: -3px 9px 20px 4px #868585;
+
+  &:hover {
+    box-shadow: -3px 9px 20px 4px #748e8e;
+  }
 }
 
 .product:hover {
@@ -135,7 +129,7 @@ body {
   }
 
   .add-to-cart:hover {
-    background: #5a5a5a;
+    background: #54d2d2;
     cursor: pointer;
   }
 
@@ -300,7 +294,9 @@ strike {
   cursor: pointer;
 
   &:hover {
-    background-color: #f1f1f2;
+    border: 1px solid #54d2d2;
+    background-color: #54d2d2;
+    color: white;
   }
 }
 
@@ -371,6 +367,10 @@ strike {
   position: absolute;
   background-color: #ffffff;
   cursor: pointer;
+
+  &:hover {
+    background-color: #54d2d2;
+  }
 }
 
 .cart-title {
@@ -452,7 +452,7 @@ strike {
 
   label {
     color: #ffffff;
-    font-size: 15px;
+    font-size: 17px;
     font-family: 'Segoe UI';
     margin-left: 5px;
     margin-bottom: 5px;

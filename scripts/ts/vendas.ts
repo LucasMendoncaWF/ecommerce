@@ -155,7 +155,7 @@ let sellItems = () => {
     $.ajax({
       url: "http://localhost:3000/Produtos", success: function (produtosEncontrados) {
         for (let productData of produtosEncontrados) {
-          let imagem = productData.ImageSrc != undefined ? productData.ImageSrc : '../images/itemdefault.png';
+          let imagem = productData.ImageSrc != '' ? productData.ImageSrc : '../images/itemdefault.png';
           products.push({ Title: productData.Title, Icone: imagem });
           //Aplica o produto a página
           htmlProdutos = `<div class='product'>               

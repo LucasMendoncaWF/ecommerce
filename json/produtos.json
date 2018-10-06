@@ -49,6 +49,16 @@
       "Title": "produto 10",
       "Price": 12.5,
       "ImageSrc": ""
+    },
+    {
+      "Title": "produto 11",
+      "Price": 12.5,
+      "ImageSrc": ""
+    },
+    {
+      "Title": "produto 12",
+      "Price": 12.5,
+      "ImageSrc": ""
     }
   ]
 }
