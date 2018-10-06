@@ -11,9 +11,27 @@ body {
 
 .titulo-secao {
   padding: 20px;
-  background-color: #54d2d2;
-  color: #ffffff;
-  font-size: 25px; }
+  background-color: #29dede;
+  color: white;
+  font-size: 25px;
+  display: flex; }
+  .titulo-secao .filtro-campo {
+    width: 200px; }
+    .titulo-secao .filtro-campo .label-filtro {
+      font-size: 17px;
+      position: absolute;
+      top: -12px; }
+    .titulo-secao .filtro-campo .select-filtro {
+      width: 100%;
+      padding: 2px;
+      position: absolute;
+      top: 18px;
+      border: 1px solid white;
+      color: #b7b7b7; }
+
+.filtros {
+  position: absolute;
+  right: 20px; }
 
 #produtos {
   padding: 20px;
@@ -25,7 +43,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   margin-top: 58px;
-  padding-left: 40px; }
+  padding-left: 2%; }
 
 .product-fade {
   position: absolute;
@@ -63,7 +81,7 @@ body {
   margin-top: 22px;
   margin-bottom: 55px; }
   .product:hover .product-button {
-    background: #6be4ff; }
+    background: #29dede; }
 
 .clicado-fade {
   display: block; }
@@ -71,14 +89,14 @@ body {
 .clicado:hover {
   margin: 40px; }
   .clicado:hover .product-button {
-    background: #ffffff; }
+    background: white; }
 
 .popup-qtd {
-  width: 80%;
+  width: 230px;
   padding: 11px;
-  background: #fff;
+  background: white;
   font-family: 'Segoe UI';
-  margin-left: 5%;
+  margin-left: calc(50% - 126px);
   margin-top: 60px;
   display: flex;
   flex-wrap: wrap; }
@@ -96,11 +114,11 @@ body {
     width: 100%;
     margin-top: 20px;
     background: #adadad;
-    color: #fff;
+    color: white;
     border: 0;
     padding: 10px; }
   .popup-qtd .add-to-cart:hover {
-    background: #54d2d2;
+    background: #29dede;
     cursor: pointer; }
   .popup-qtd .error-add {
     display: none;
@@ -115,9 +133,8 @@ body {
   width: 100%;
   height: 135px;
   margin-bottom: 15px;
-  background-position: 0px 0px;
+  background-position: 50% 50%;
   background-repeat: no-repeat;
-  background-color: white;
   background-size: 218px; }
 
 .cart-blink {
@@ -129,22 +146,6 @@ body {
 
 .filtrado {
   display: none; }
-
-.filtro-categoria {
-  float: right;
-  margin-right: 80px;
-  margin-top: -125px;
-  width: 225px; }
-  .filtro-categoria #categoria {
-    background: rgba(255, 255, 255, 0.8); }
-
-.filtro-familia {
-  float: right;
-  margin-right: 310px;
-  margin-top: -125px;
-  width: 225px; }
-  .filtro-familia #familia {
-    background: rgba(255, 255, 255, 0.8); }
 
 .cart-icone-add {
   margin: 13px;
@@ -158,7 +159,7 @@ body {
   margin-bottom: 5px;
   font-size: 21px;
   height: 65px;
-  color: #ffffff; }
+  color: white; }
 
 .product-code {
   height: 20px;
@@ -169,11 +170,11 @@ body {
   width: 80%;
   margin-left: 10%;
   font-size: 22px;
-  color: #ffffff; }
+  color: white; }
 
 .product-button {
-  background: #ffffff;
-  color: #fff;
+  background: white;
+  color: white;
   height: 55px;
   border: 6px solid #b7b7b7;
   width: 55px;
@@ -197,25 +198,16 @@ body {
   margin-left: 10%;
   margin-bottom: 10px; }
 
-strike {
-  color: #afa5a5; }
-
-.filtros {
-  margin-top: 10px;
-  margin-top: -50px; }
-  .filtros label {
-    color: white; }
-
 .cart-circle {
   right: 0px;
-  top: 0px;
+  top: 120px;
   position: fixed;
   width: 80px;
   height: 80px;
   border-radius: 50%;
   background-color: #b7b7b7;
   transition: 0.2s;
-  z-index: 1000;
+  z-index: 800;
   opacity: 0.6;
   display: none; }
 
@@ -228,28 +220,13 @@ strike {
 
 .cart-buttons {
   padding: 10px;
-  background-color: #ffffff;
+  background-color: white;
   border: 1px solid #dedede;
   cursor: pointer; }
   .cart-buttons:hover {
-    border: 1px solid #54d2d2;
-    background-color: #54d2d2;
+    border: 1px solid #29dede;
+    background-color: #29dede;
     color: white; }
-
-.cart-shadow {
-  background: rgba(0, 0, 0, 0.6);
-  width: 344px;
-  margin-left: 66px;
-  height: 525px;
-  margin-top: -525px;
-  position: absolute;
-  display: none; }
-  .cart-shadow button {
-    height: 35px;
-    font-size: 15px;
-    padding: 5px;
-    margin: 18px;
-    border: 0; }
 
 #cart-popup {
   width: 280px;
@@ -268,7 +245,7 @@ strike {
   font-size: 20px;
   margin-left: 25px;
   margin-bottom: 10px;
-  color: #ffffff;
+  color: white;
   height: 28px;
   margin-top: 5px;
   overflow: hidden; }
@@ -293,20 +270,20 @@ strike {
   border-radius: 50%;
   margin: 10px;
   position: absolute;
-  background-color: #ffffff;
+  background-color: white;
   cursor: pointer; }
   .cart-icon:hover {
-    background-color: #54d2d2; }
+    background-color: #29dede; }
 
 .cart-title {
   padding: 18px;
   padding-left: 54px;
-  color: #ffffff;
+  color: white;
   font-size: 26px;
   font-family: 'Segoe UI'; }
 
 #cart-linha {
-  border-top: 1px solid #fff;
+  border-top: 1px solid white;
   margin: 0px 20px 0px 20px; }
 
 #cart-items {
@@ -347,14 +324,14 @@ strike {
     height: 67px;
     margin-bottom: 12px;
     background-repeat: no-repeat;
-    background-size: 138px;
-    background-color: #fff;
-    background-position: -9px -7px;
+    background-size: 80%;
+    background-color: white;
+    background-position: 50% 60%;
     float: left; }
   .cart-item .product-name {
     margin-bottom: 0;
     font-size: 21px;
-    color: #ffffff;
+    color: white;
     width: 80%;
     margin-left: 8px;
     text-align: left;
@@ -363,7 +340,7 @@ strike {
     white-space: nowrap;
     text-overflow: ellipsis; }
   .cart-item label {
-    color: #ffffff;
+    color: white;
     font-size: 17px;
     font-family: 'Segoe UI';
     margin-left: 5px;
@@ -385,7 +362,7 @@ strike {
     text-align: right;
     margin-bottom: 0;
     margin-left: 30px;
-    color: #ffffff;
+    color: white;
     float: right; }
   .cart-item .product-line {
     clear: both;
@@ -397,7 +374,6 @@ strike {
 ::-webkit-scrollbar {
   width: 8px; }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #6f6f6f; }
 
@@ -410,7 +386,7 @@ strike {
 
 .lists {
   list-style: none;
-  background-color: #fff;
+  background-color: white;
   border: 1px solid #c1c1c1;
   box-shadow: 0 6px 19px 0 #7d7d7d;
   max-height: 200px;
@@ -428,14 +404,14 @@ strike {
 
 .list-item:hover {
   background-color: rgba(54, 0, 14, 0.8);
-  color: #ffffff; }
+  color: white; }
 
 #clientes-list, #cnpj-list {
   display: none; }
 
 .remove-item {
   border: 1px solid #d0d0d4;
-  color: #ffffff;
+  color: white;
   font-family: 'Helvetica','Arial',sans-serif;
   font-size: 1.3em;
   padding: 1px 5px 0px;
@@ -467,17 +443,10 @@ strike {
     margin: 22px; }
   .product-fade {
     width: 100%; }
-  .popup-qtd {
-    margin: 17px;
-    margin-top: 40px; }
   .product:hover {
     margin: 22px; }
   .product-image {
-    background-position: 50% 0; }
-  .filtros {
-    margin-top: 190px;
-    margin-bottom: 45px;
-    margin-left: 6px; } }
+    background-position: 50% 50%; } }
 
 @media only screen and (max-width: 715px) {
   .product {
@@ -488,21 +457,23 @@ strike {
   .cart-circle {
     top: 0px; }
   .cart-circle-mobile {
-    background-color: #fff0; }
+    background-color: #fff0;
+    width: 100%;
+    right: 42px; }
   .cart-mobile {
-    width: 368px;
+    width: 100%;
     height: 1000px;
     margin-left: 42px; }
   .cart-icon-mobile {
     opacity: 0; }
   .cart-title-mobile {
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid white;
     padding: 18px 18px 18px 18px;
     margin-right: 8px;
     margin-left: 8px; }
   .cart-faixa-mobile {
     margin-left: 42px;
-    width: 368px;
+    width: 100%;
     position: relative; }
   .cart-faixa-x-visible {
     display: block;
@@ -510,7 +481,7 @@ strike {
     top: 12px;
     right: 12px;
     font-size: 23px;
-    color: #36000e;
+    color: white;
     font-family: 'Helvetica','Arial',sans-serif; }
   .cart-shadow-mobile {
     background: rgba(0, 0, 0, 0.6);
@@ -527,22 +498,73 @@ strike {
   height: 100%;
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  display: none; }
+  display: none;
+  z-index: 801; }
   #popup-sucsess .popup-sucsess-front {
     width: 25%;
     height: 150px;
     position: absolute;
     left: 35%;
-    background-color: #fff;
+    background-color: white;
     top: 15%;
     border-radius: 10px;
     padding: 20px; }
+    @media only screen and (max-width: 715px) {
+      #popup-sucsess .popup-sucsess-front {
+        width: 70%;
+        left: 10%; } }
   #popup-sucsess .popup-sucsess-title {
-    font-size: 20px; }
+    font-size: 28px; }
   #popup-sucsess .popup-sucsess-message {
-    font-size: 18px; }
+    font-size: 24px;
+    display: none;
+    margin-top: 20px; }
   #popup-sucsess .popup-sucsess-ok {
     width: 80px;
     position: absolute;
     bottom: 20px;
-    right: 20px; }
+    right: 20px;
+    display: none;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #dedede;
+    cursor: pointer; }
+    #popup-sucsess .popup-sucsess-ok:hover {
+      border: 1px solid #29dede;
+      background-color: #29dede;
+      color: white; }
+  #popup-sucsess .loading {
+    display: flex;
+    justify-content: center; }
+    #popup-sucsess .loading .loader {
+      color: #29dede;
+      font-size: 50px;
+      text-indent: -9999em;
+      overflow: hidden;
+      width: 1em;
+      height: 1em;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      animation: load 1.7s infinite ease, round 1.7s infinite ease; }
+
+@keyframes load {
+  0% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em; }
+  5%, 95% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em; }
+  10%, 59% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em; }
+  20% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em; }
+  38% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em; }
+  100% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em; } }
+
+@keyframes round {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }

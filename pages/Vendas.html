@@ -29,36 +29,32 @@
         <button type="button" class="cart-buttons botao-desabilitado" id="cart-finish">Finalizar</button>
       </div>
     </div>
-    <div class="cart-shadow">
-      <div id="cart-popup">
-        <div id="cart-popup-text">Deseja realmente esvaziar o carrinho?</div>
-        <button type="button" class="cart-buttons botao-desabilitado" id="cart-popup-cancel">Cancelar</button>
-        <button type="button" class="cart-buttons botao-desabilitado" id="cart-popup-empty">Esvaziar Carrinho</button>
-      </div>
-    </div>
   </div>
   <div id="conteudo-compra">
     <div id="items-compra">
       <div class="titulo-secao">
         <div class="titulo-texto" id="titulo-itens">Loja</div>
-      </div>
-      <div id="produtos">
         <div class="filtros">
-          <div class="campo campo-3 filtro-categoria">
-            <label>Categoria:</label>
-            <select id="categoria">
+          <div class="filtro-campo filtro-categoria">
+            <label class="label-filtro">Categoria:</label>
+            <select class="select-filtro" id="categoria">
               <option selected>Todos</option>
+              <option>Corrida</option>
+              <option>Casual</option>
+              <option>Cano Alto</option>
             </select>
           </div>
         </div>
+      </div>
+      <div id="produtos">       
         <div class="produtos-carregados"></div>
       </div>
     </div>
   </div>
   <div id="popup-sucsess" title="Pedido Enviado">
     <div class="popup-sucsess-front">
-      <div class="popup-sucsess-title">Pedido Enviado</div>
-      <hr class="popup-sucsess-line" />
+      <div class="popup-sucsess-title">Pedido</div>
+      <div class="loading"><div class="loader"></div></div>
       <div class="popup-sucsess-message">Pedido enviado com sucesso!</div>
       <button class="popup-sucsess-ok">OK</button>
     </div>

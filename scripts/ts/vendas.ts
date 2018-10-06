@@ -1,41 +1,11 @@
 ﻿
-interface Client {
-  Title: string,
-  ClientCode: string,
-  Id: number
-}
-
-interface Category {
-  Title: string
-}
-
-interface Family {
-  Title: string
-}
-
-interface Store {
-  Title: string,
-  Seller: string,
-  Client: Client,
-  CNPJ: string,
-  Adress: string,
-  City: string,
-  UF: string,
-  PostalCode: string,
-  District: string,
-  IE: string,
-  Id: number,
-  Discount: number
-}
-
 interface Produto {
-  IconeSrc: string,
-  Description: string,
+  ImageSrc: string,
   Title: string,
   Price: number,
   Id: number,
-  Category: Category
-  Family: Family
+  BgColor: string,
+  Category: string
 }
 
 let sellItems = () => {
@@ -62,12 +32,6 @@ let sellItems = () => {
       .removeClass('clicado')
       .children('.product-fade')
       .removeClass('clicado-fade');
-  });
-  //Botão de ok para fechar popup de mensagem de sucesso
-  $('.popup-sucsess-ok').on("click", (e) => {
-    e.preventDefault();
-    $('#popup-sucsess').hide();
-    location.reload();
   });
 
   //Abre o carrinho da lateral direita
@@ -96,14 +60,13 @@ let sellItems = () => {
   }
 
   //Função de filtro dos produtos
-  let filter = () => {
+  $('#categoria').change(function (e) {
     //Verifica qual a familia e a caregoria selecionada
-    let filtroFamilia = $('#familia');
-    let filtroCategorias = $('#categoria');
+    let filtroCategorias = $(e.currentTarget);
     let products = $('.product');
     products.removeClass('clear-float');
     //Verifica os filtros e as propriedades nos produtos
-    if (filtroFamilia.val() == 'Todos' && filtroCategorias.val() == 'Todos') {
+    if (filtroCategorias.val() == 'Todos') {
       products.removeClass('filtrado');
       for (let product = 0; product < products.length; product++) {
         if (product % 6 == 0) {
@@ -112,31 +75,11 @@ let sellItems = () => {
       }
     }
     else {
-      if (filtroCategorias.val() == 'Todos') {
-        for (let product = 0; product < products.length; product++) {
-          if (products.eq(product).attr('family') == filtroFamilia.val()) {
-            products.eq(product).removeClass('filtrado');
-          } else {
-            products.eq(product).addClass('filtrado');
-          }
-        }
-      }
-      if (filtroFamilia.val() == 'Todos') {
-        for (let product = 0; product < products.length; product++) {
-          if (products.eq(product).attr('category') == filtroCategorias.val()) {
-            products.eq(product).removeClass('filtrado');
-          } else {
-            products.eq(product).addClass('filtrado');
-          }
-        }
-      }
-      if (filtroFamilia.val() != 'Todos' && filtroCategorias.val() != 'Todos') {
-        for (let product = 0; product < products.length; product++) {
-          if (products.eq(product).attr('category') == filtroCategorias.val() && products.eq(product).attr('family') == filtroFamilia.val()) {
-            products.eq(product).removeClass('filtrado');
-          } else {
-            products.eq(product).addClass('filtrado');
-          }
+      for (let product = 0; product < products.length; product++) {
+        if (products.eq(product).attr('category') == filtroCategorias.val()) {
+          products.eq(product).removeClass('filtrado');
+        } else {
+          products.eq(product).addClass('filtrado');
         }
       }
       for (let product = 0; product < products.not('.filtrado').length; product++) {
@@ -145,7 +88,7 @@ let sellItems = () => {
         }
       }
     }
-  }
+  });
 
   //Consulta os produtos na lista de produtos
   let products = [];
@@ -153,13 +96,15 @@ let sellItems = () => {
   let getProducts = () => {
     let index = 0;
     $.ajax({
-      url: "http://localhost:3000/Produtos", success: function (produtosEncontrados) {
-        for (let productData of produtosEncontrados) {
+      url: "/lucasmendoncapportfolio.atwebpages.com/json/produtos.json", success: (produtosEncontrados) => {
+        let produtos: Produto[] = produtosEncontrados['Produtos'];
+        for (let productData of produtos) {
           let imagem = productData.ImageSrc != '' ? productData.ImageSrc : '../images/itemdefault.png';
-          products.push({ Title: productData.Title, Icone: imagem });
+          let bgColor = productData.BgColor != '' ? productData.BgColor : '#fff';
+          products.push({ Title: productData.Title, Icone: imagem, Preco: productData.Price, Id: productData.Id, BgColor: bgColor });
           //Aplica o produto a página
-          htmlProdutos = `<div class='product'>               
-                  <div class='product-image' style="background-image:url('${imagem}')"></div>
+          htmlProdutos = `<div class='product' category='${productData.Category}'>               
+                  <div class='product-image' style="background-color:${bgColor};background-image:url('${imagem}')"></div>
                   <div class='product-data'>
                    <div class='product-name'>${productData.Title}</div>
                    <div class='product-price'>R$${numberToReal(productData.Price)}</div>
@@ -168,7 +113,7 @@ let sellItems = () => {
                   <div class='product-fade'>
                     <div class='popup-qtd'>
                       <label>Quantidade</label>
-                      <input type='number' min='1' class='qtd-caixas-product' value='0'/>
+                      <input type='number' min='1' class='qtd-produtosQtd-product' value='0'/>
                       <div class='error-add'>Por favor, digite um número maior que 0</div>
                       <button class='add-to-cart' type='button' product-index='${index}'>Adicionar ao Carrinho</button>
                     </div>
@@ -188,7 +133,7 @@ let sellItems = () => {
 
   //Adiciona o produto ao carrinho     
   let addToCart = () => {
-    //Exibe a popup de quantidade de caixas no produto
+    //Exibe a popup de quantidade de produtosQtd no produto
     $('.product').click((e) => {
       e.stopPropagation();
       $('.cart-circle').removeClass('cart-open');
@@ -211,8 +156,8 @@ let sellItems = () => {
       let produtoPopup = $(e.currentTarget).parent('.popup-qtd');
       let fade = produtoPopup.parent('.product-fade');
       let produto = fade.parent('.product');
-      let qtd: number = + produtoPopup.children('.qtd-caixas-product').val();
-      produtoPopup.children('.qtd-caixas-product').val(0);
+      let qtd: number = + produtoPopup.children('.qtd-produtosQtd-product').val();
+      produtoPopup.children('.qtd-produtosQtd-product').val(0);
       if (qtd < 1) {
         produtoPopup.children('.error-add').addClass('error');
       } else {
@@ -225,16 +170,16 @@ let sellItems = () => {
         let productIndex = $(e.currentTarget).attr('product-index');
         $(`#cart-item-${products[productIndex].Id}`).detach();
         //Aplica o produto na div de produtos do carrinho
-        let htmlCart = `<div class='cart-item' product-index='${productIndex}' SKU='${products[productIndex].SKU}' product-id='${products[productIndex].Id}' id='cart-item-${products[productIndex].Id}'>
+        let htmlCart = `<div class='cart-item' product-index='${productIndex}' product-id='${products[productIndex].Id}' id='cart-item-${products[productIndex].Id}'>
               <div class="remove-item remove-${products[productIndex].Id}" title='Remover do carrinho'>
                 <span class="x-button">X</span>
               </div>
-              <div class='cart-item-image' style="background-image:url('${products[productIndex].Icone}')"></div>
+              <div class='cart-item-image' style="background-color:${products[productIndex].BgColor};background-image:url('${products[productIndex].Icone}')"></div>
               <div class='product-name' title="${products[productIndex].Title}">${products[productIndex].Title}</div>
               <div class='product-price' >R$${numberToReal(qtd * products[productIndex].Preco)}</div>
               <div class='qtd-div'>
                 <label>Quantidade</label>
-                <input type='number' min='1' class='qtd-caixas' value='${qtd}' default-price='${products[productIndex].Preco}'/>  
+                <input type='number' min='1' class='qtd-produtosQtd' value='${qtd}' default-price='${products[productIndex].Preco}'/>  
               </div>
               <div class="clear-float"></div>
               <hr class='product-line'/>
@@ -255,16 +200,6 @@ let sellItems = () => {
           if ($('.cart-item').length == 1) { $('.cart-circle ').toggle(); }
           elemPai.detach();
         });
-        if (!possuiItens) {
-          carrinhoButtons();
-          possuiItens = true;
-        }
-
-        let totalCaixas = 0;
-        let caixas = $('.qtd-caixas');
-        for (let caixa = 0; caixa < caixas.length; caixa++) {
-          totalCaixas += + caixas.eq(caixa).val();
-        }
 
         let valorTotal = 0;
         let cartItem = $('.cart-item');
@@ -292,12 +227,12 @@ let sellItems = () => {
     return numero.join(',');
   }
 
-  //Altera o valor de acordo com o número de caixas no input do produto no carrinho
+  //Altera o valor de acordo com o número de produtosQtd no input do produto no carrinho
   let carrinhoPrices = () => {
-    $('.qtd-caixas').change((e) => {
-      let caixas = $('.qtd-caixas');
-      let caixaItemAtual: number = + $(e.currentTarget).val();
-      let price = numberToReal((parseFloat($(e.currentTarget).attr('default-price')) * caixaItemAtual));
+    $('.qtd-produtosQtd').change((e) => {
+      let produtosQtd = $('.qtd-produtosQtd');
+      let produtoItemAtual: number = + $(e.currentTarget).val();
+      let price = numberToReal((parseFloat($(e.currentTarget).attr('default-price')) * produtoItemAtual));
       $(e.currentTarget).parent('.qtd-div').parent('.cart-item').children('.product-price').text('R$' + price);
       let cartItem = $('.cart-item');
       let valorTotal = 0;
@@ -310,9 +245,18 @@ let sellItems = () => {
   }
   //Botoões do carrinho
   $('.cart-buttons').prop('disabled', true);
-  let carrinhoButtons = () => {
-    console.log('Pedido Enviado');
-  }
+
+  $('#cart-finish').click((e) => {
+    $('#popup-sucsess').show();
+    $('.cart-item').detach();
+    mostraEscondeCarrinho();
+    setTimeout(function () { $('.loading').hide(); $('.popup-sucsess-ok, .popup-sucsess-message').show(); }, 3000);
+  });
+
+  $('.popup-sucsess-ok').click((e) => {
+    e.preventDefault();
+    location.reload();
+  });
 
   //Realiza as funções iniciais
   cartOpen();

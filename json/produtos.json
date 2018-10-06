@@ -2,63 +2,99 @@
   "Produtos": [
     {
       "Title": "produto 1",
-      "Price": 12.5,
-      "ImageSrc": ""
+      "Price": 512.50,
+      "ImageSrc": "https://c.static-nike.com/a/images/t_PDP_1280_v1/f_auto/ms8jq491fqaacieyslpx/odyssey-react-mens-running-shoe-ODEY0A.jpg",
+      "Id": 1,
+      "BgColor": "#f6f6f6",
+      "Category": "Casual"
     },
     {
       "Title": "produto 2",
-      "Price": 12.5,
-      "ImageSrc": ""
+      "Price": 158.99,
+      "ImageSrc": "",
+      "Id": 2,
+      "BgColor": "#fff",
+      "Category": "Cano Alto"
     },
     {
       "Title": "produto 3",
-      "Price": 12.5,
-      "ImageSrc": ""
+      "Price": 208.12,
+      "ImageSrc": "https://c.static-nike.com/a/images/t_PDP_1280_v1/f_auto/tpdmu3vuzkj8hmlffn5k/air-zoom-hyperace-womens-volleyball-shoe-n0qOqo.jpg",
+      "Id": 3,
+      "BgColor": "#f6f6f6",
+      "Category": "Corrida"
     },
     {
       "Title": "produto 4",
-      "Price": 12.5,
-      "ImageSrc": ""
+      "Price": 378.42,
+      "ImageSrc": "https://c.static-nike.com/a/images/t_PDP_1280_v1/f_auto/hfs07wimap5poyqftxsa/air-force-1-high-07-mens-shoe-xqTP3zzb.jpg",
+      "Id": 4,
+      "BgColor": "#f6f6f6",
+      "Category": "Cano Alto"
     },
     {
       "Title": "produto 5",
-      "Price": 12.5,
-      "ImageSrc": ""
+      "Price": 205.50,
+      "ImageSrc": "https://c.static-nike.com/a/images/t_PDP_1280_v1/f_auto/j9cqrpaufkz5adxnspmj/tanjun-womens-shoe-ZwTJEKnB.jpg",
+      "Id": 5,
+      "BgColor": "#f6f6f6",
+      "Category": "Casual"
     },
     {
       "Title": "produto 6",
-      "Price": 12.5,
-      "ImageSrc": ""
+      "Price": 16.99,
+      "ImageSrc": "",
+      "Id": 6,
+      "BgColor": "#fff",
+      "Category": "Casual"
     },
     {
       "Title": "produto 7",
-      "Price": 12.5,
-      "ImageSrc": ""
+      "Price": 670.80,
+      "ImageSrc": "https://c.static-nike.com/a/images/t_PDP_1280_v1/f_auto/jth6offohlu0lyzejlho/free-x-metcon-gym-cross-training-shoe-VKoLdD.jpg",
+      "Id": 7,
+      "BgColor": "#f6f6f6",
+      "Category": "Corrida"
     },
     {
       "Title": "produto 8",
-      "Price": 12.5,
-      "ImageSrc": ""
+      "Price": 245.50,
+      "ImageSrc": "https://c.static-nike.com/a/images/t_default/wuue4cypyyazsqtjqulg/air-max-90-womens-shoe-hzXJ5v.jpg",
+      "Id": 8,
+      "BgColor": "#fff",
+      "Category": "Corrida"
     },
     {
       "Title": "produto 9",
-      "Price": 12.5,
-      "ImageSrc": ""
+      "Price": 234.55,
+      "ImageSrc": "http://www.oseifrimpong.me/wp-content/uploads/2018/04/innovation-nike-men-running-shoes-0-s-run-swift-academy.jpg",
+      "Id": 9,
+      "BgColor": "#fff",
+      "Category": "Corrida"
     },
     {
       "Title": "produto 10",
-      "Price": 12.5,
-      "ImageSrc": ""
+      "Price": 1205.88,
+      "ImageSrc": "https://assets.myntassets.com/w_1080,q_90/v1/assets/images/1756802/2017/2/23/11487849789375-Nike-Men-Grey-Running-Shoes-1261487849789204-1_mini.jpg",
+      "Id": 10,
+      "BgColor": "#fff",
+      "Category": "Corrida"
     },
     {
       "Title": "produto 11",
-      "Price": 12.5,
-      "ImageSrc": ""
+      "Price": 489.50,
+      "ImageSrc": "https://images.sportsdirect.com/images/products/14510430_l.jpg",
+      "Id": 11,
+      "BgColor": "#fff",
+      "Category": "Corrida"
     },
     {
       "Title": "produto 12",
-      "Price": 12.5,
-      "ImageSrc": ""
+      "Price": 310.45,
+      "ImageSrc": "https://www.backalleymusic.ca/images/large/nike%20shoes-505caj.jpg",
+      "Id": 12,
+      "BgColor": "#f6f6f6",
+      "Category": "Casual"
     }
   ]
 }

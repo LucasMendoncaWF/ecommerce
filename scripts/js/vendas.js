@@ -22,12 +22,6 @@ var sellItems = function () {
             .children('.product-fade')
             .removeClass('clicado-fade');
     });
-    //Botão de ok para fechar popup de mensagem de sucesso
-    $('.popup-sucsess-ok').on("click", function (e) {
-        e.preventDefault();
-        $('#popup-sucsess').hide();
-        location.reload();
-    });
     //Abre o carrinho da lateral direita
     var cartOpen = function () {
         $('.cart-icon').click(function () {
@@ -52,14 +46,13 @@ var sellItems = function () {
         }
     };
     //Função de filtro dos produtos
-    var filter = function () {
+    $('#categoria').change(function (e) {
         //Verifica qual a familia e a caregoria selecionada
-        var filtroFamilia = $('#familia');
-        var filtroCategorias = $('#categoria');
+        var filtroCategorias = $(e.currentTarget);
         var products = $('.product');
         products.removeClass('clear-float');
         //Verifica os filtros e as propriedades nos produtos
-        if (filtroFamilia.val() == 'Todos' && filtroCategorias.val() == 'Todos') {
+        if (filtroCategorias.val() == 'Todos') {
             products.removeClass('filtrado');
             for (var product = 0; product < products.length; product++) {
                 if (product % 6 == 0) {
@@ -68,34 +61,12 @@ var sellItems = function () {
             }
         }
         else {
-            if (filtroCategorias.val() == 'Todos') {
-                for (var product = 0; product < products.length; product++) {
-                    if (products.eq(product).attr('family') == filtroFamilia.val()) {
-                        products.eq(product).removeClass('filtrado');
-                    }
-                    else {
-                        products.eq(product).addClass('filtrado');
-                    }
+            for (var product = 0; product < products.length; product++) {
+                if (products.eq(product).attr('category') == filtroCategorias.val()) {
+                    products.eq(product).removeClass('filtrado');
                 }
-            }
-            if (filtroFamilia.val() == 'Todos') {
-                for (var product = 0; product < products.length; product++) {
-                    if (products.eq(product).attr('category') == filtroCategorias.val()) {
-                        products.eq(product).removeClass('filtrado');
-                    }
-                    else {
-                        products.eq(product).addClass('filtrado');
-                    }
-                }
-            }
-            if (filtroFamilia.val() != 'Todos' && filtroCategorias.val() != 'Todos') {
-                for (var product = 0; product < products.length; product++) {
-                    if (products.eq(product).attr('category') == filtroCategorias.val() && products.eq(product).attr('family') == filtroFamilia.val()) {
-                        products.eq(product).removeClass('filtrado');
-                    }
-                    else {
-                        products.eq(product).addClass('filtrado');
-                    }
+                else {
+                    products.eq(product).addClass('filtrado');
                 }
             }
             for (var product = 0; product < products.not('.filtrado').length; product++) {
@@ -104,20 +75,22 @@ var sellItems = function () {
                 }
             }
         }
-    };
+    });
     //Consulta os produtos na lista de produtos
     var products = [];
     var htmlProdutos;
     var getProducts = function () {
         var index = 0;
         $.ajax({
-            url: "http://localhost:3000/Produtos", success: function (produtosEncontrados) {
-                for (var _i = 0, produtosEncontrados_1 = produtosEncontrados; _i < produtosEncontrados_1.length; _i++) {
-                    var productData = produtosEncontrados_1[_i];
+            url: "/lucasmendoncapportfolio.atwebpages.com/json/produtos.json", success: function (produtosEncontrados) {
+                var produtos = produtosEncontrados['Produtos'];
+                for (var _i = 0, produtos_1 = produtos; _i < produtos_1.length; _i++) {
+                    var productData = produtos_1[_i];
                     var imagem = productData.ImageSrc != '' ? productData.ImageSrc : '../images/itemdefault.png';
-                    products.push({ Title: productData.Title, Icone: imagem });
+                    var bgColor = productData.BgColor != '' ? productData.BgColor : '#fff';
+                    products.push({ Title: productData.Title, Icone: imagem, Preco: productData.Price, Id: productData.Id, BgColor: bgColor });
                     //Aplica o produto a página
-                    htmlProdutos = "<div class='product'>               \n                  <div class='product-image' style=\"background-image:url('" + imagem + "')\"></div>\n                  <div class='product-data'>\n                   <div class='product-name'>" + productData.Title + "</div>\n                   <div class='product-price'>R$" + numberToReal(productData.Price) + "</div>\n                  </div>\n                  <div class='product-button'><img class='cart-icone-add' src='../images/cart.png'/></div>\n                  <div class='product-fade'>\n                    <div class='popup-qtd'>\n                      <label>Quantidade</label>\n                      <input type='number' min='1' class='qtd-caixas-product' value='0'/>\n                      <div class='error-add'>Por favor, digite um n\u00FAmero maior que 0</div>\n                      <button class='add-to-cart' type='button' product-index='" + index + "'>Adicionar ao Carrinho</button>\n                    </div>\n                    <div class='product-fade-circle'></div>\n                  </div>\n                </div>";
+                    htmlProdutos = "<div class='product' category='" + productData.Category + "'>               \n                  <div class='product-image' style=\"background-color:" + bgColor + ";background-image:url('" + imagem + "')\"></div>\n                  <div class='product-data'>\n                   <div class='product-name'>" + productData.Title + "</div>\n                   <div class='product-price'>R$" + numberToReal(productData.Price) + "</div>\n                  </div>\n                  <div class='product-button'><img class='cart-icone-add' src='../images/cart.png'/></div>\n                  <div class='product-fade'>\n                    <div class='popup-qtd'>\n                      <label>Quantidade</label>\n                      <input type='number' min='1' class='qtd-produtosQtd-product' value='0'/>\n                      <div class='error-add'>Por favor, digite um n\u00FAmero maior que 0</div>\n                      <button class='add-to-cart' type='button' product-index='" + index + "'>Adicionar ao Carrinho</button>\n                    </div>\n                    <div class='product-fade-circle'></div>\n                  </div>\n                </div>";
                     index++;
                     $('.produtos-carregados').append(htmlProdutos);
                     if (index == produtosEncontrados.length) {
@@ -130,7 +103,7 @@ var sellItems = function () {
     };
     //Adiciona o produto ao carrinho     
     var addToCart = function () {
-        //Exibe a popup de quantidade de caixas no produto
+        //Exibe a popup de quantidade de produtosQtd no produto
         $('.product').click(function (e) {
             e.stopPropagation();
             $('.cart-circle').removeClass('cart-open');
@@ -153,8 +126,8 @@ var sellItems = function () {
             var produtoPopup = $(e.currentTarget).parent('.popup-qtd');
             var fade = produtoPopup.parent('.product-fade');
             var produto = fade.parent('.product');
-            var qtd = +produtoPopup.children('.qtd-caixas-product').val();
-            produtoPopup.children('.qtd-caixas-product').val(0);
+            var qtd = +produtoPopup.children('.qtd-produtosQtd-product').val();
+            produtoPopup.children('.qtd-produtosQtd-product').val(0);
             if (qtd < 1) {
                 produtoPopup.children('.error-add').addClass('error');
             }
@@ -168,7 +141,7 @@ var sellItems = function () {
                 var productIndex = $(e.currentTarget).attr('product-index');
                 $("#cart-item-" + products[productIndex].Id).detach();
                 //Aplica o produto na div de produtos do carrinho
-                var htmlCart = "<div class='cart-item' product-index='" + productIndex + "' SKU='" + products[productIndex].SKU + "' product-id='" + products[productIndex].Id + "' id='cart-item-" + products[productIndex].Id + "'>\n              <div class=\"remove-item remove-" + products[productIndex].Id + "\" title='Remover do carrinho'>\n                <span class=\"x-button\">X</span>\n              </div>\n              <div class='cart-item-image' style=\"background-image:url('" + products[productIndex].Icone + "')\"></div>\n              <div class='product-name' title=\"" + products[productIndex].Title + "\">" + products[productIndex].Title + "</div>\n              <div class='product-price' >R$" + numberToReal(qtd * products[productIndex].Preco) + "</div>\n              <div class='qtd-div'>\n                <label>Quantidade</label>\n                <input type='number' min='1' class='qtd-caixas' value='" + qtd + "' default-price='" + products[productIndex].Preco + "'/>  \n              </div>\n              <div class=\"clear-float\"></div>\n              <hr class='product-line'/>\n          </div>";
+                var htmlCart = "<div class='cart-item' product-index='" + productIndex + "' product-id='" + products[productIndex].Id + "' id='cart-item-" + products[productIndex].Id + "'>\n              <div class=\"remove-item remove-" + products[productIndex].Id + "\" title='Remover do carrinho'>\n                <span class=\"x-button\">X</span>\n              </div>\n              <div class='cart-item-image' style=\"background-color:" + products[productIndex].BgColor + ";background-image:url('" + products[productIndex].Icone + "')\"></div>\n              <div class='product-name' title=\"" + products[productIndex].Title + "\">" + products[productIndex].Title + "</div>\n              <div class='product-price' >R$" + numberToReal(qtd * products[productIndex].Preco) + "</div>\n              <div class='qtd-div'>\n                <label>Quantidade</label>\n                <input type='number' min='1' class='qtd-produtosQtd' value='" + qtd + "' default-price='" + products[productIndex].Preco + "'/>  \n              </div>\n              <div class=\"clear-float\"></div>\n              <hr class='product-line'/>\n          </div>";
                 $('#cart-items').append(htmlCart);
                 e.stopPropagation();
                 $('.cart-buttons').prop('disabled', false);
@@ -187,15 +160,6 @@ var sellItems = function () {
                     }
                     elemPai.detach();
                 });
-                if (!possuiItens) {
-                    carrinhoButtons();
-                    possuiItens = true;
-                }
-                var totalCaixas = 0;
-                var caixas = $('.qtd-caixas');
-                for (var caixa = 0; caixa < caixas.length; caixa++) {
-                    totalCaixas += +caixas.eq(caixa).val();
-                }
                 var valorTotal = 0;
                 var cartItem = $('.cart-item');
                 for (var item = 0; item < cartItem.length; item++) {
@@ -222,12 +186,12 @@ var sellItems = function () {
         numero[0] = numero[0].split(/(?=(?:...)*$)/).join('.');
         return numero.join(',');
     };
-    //Altera o valor de acordo com o número de caixas no input do produto no carrinho
+    //Altera o valor de acordo com o número de produtosQtd no input do produto no carrinho
     var carrinhoPrices = function () {
-        $('.qtd-caixas').change(function (e) {
-            var caixas = $('.qtd-caixas');
-            var caixaItemAtual = +$(e.currentTarget).val();
-            var price = numberToReal((parseFloat($(e.currentTarget).attr('default-price')) * caixaItemAtual));
+        $('.qtd-produtosQtd').change(function (e) {
+            var produtosQtd = $('.qtd-produtosQtd');
+            var produtoItemAtual = +$(e.currentTarget).val();
+            var price = numberToReal((parseFloat($(e.currentTarget).attr('default-price')) * produtoItemAtual));
             $(e.currentTarget).parent('.qtd-div').parent('.cart-item').children('.product-price').text('R$' + price);
             var cartItem = $('.cart-item');
             var valorTotal = 0;
@@ -240,9 +204,16 @@ var sellItems = function () {
     };
     //Botoões do carrinho
     $('.cart-buttons').prop('disabled', true);
-    var carrinhoButtons = function () {
-        console.log('Pedido Enviado');
-    };
+    $('#cart-finish').click(function (e) {
+        $('#popup-sucsess').show();
+        $('.cart-item').detach();
+        mostraEscondeCarrinho();
+        setTimeout(function () { $('.loading').hide(); $('.popup-sucsess-ok, .popup-sucsess-message').show(); }, 3000);
+    });
+    $('.popup-sucsess-ok').click(function (e) {
+        e.preventDefault();
+        location.reload();
+    });
     //Realiza as funções iniciais
     cartOpen();
     getProducts();
