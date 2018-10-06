@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>Portfólio - Lucas Mendonça</title>
+  <link rel="stylesheet" type="text/css" href="../styles/min.css/master-projetos.min.css" />
+  <link rel="stylesheet" type="text/css" href="../styles/min.css/vendas.min.css" />
+</head>
+<body>
+  <div id="master-projetos">
+    Projeto - E-Commerce
+    <div class="master-back" onclick="location.href= 'http://lucasmendoncapportfolio.atwebpages.com/'">Voltar</div>
+  </div>
+  <!--container principal-->
+  <div class="background"></div>
+  <div class="cart-circle">
+    <div class="cart-icon">
+      <img class='cart-image' src='../images/cart.png' />
+    </div>
+    <div class="cart-faixa">
+      <div class="cart-title">Carrinho</div>
+      <div class="cart-faixa-x">X</div>
+    </div>
+    <div class="cart">
+      <hr id="cart-linha" />
+      <div id="cart-items"></div>
+      <div id="cart-total"></div>
+      <div id="cart-button">
+        <button type="button" class="cart-buttons botao-desabilitado" id="cart-empty">Esvaziar Carrinho</button>
+        <button type="button" class="cart-buttons botao-desabilitado" id="cart-finish">Finalizar</button>
+      </div>
+    </div>
+    <div class="cart-shadow">
+      <div id="cart-popup">
+        <div id="cart-popup-text">Deseja realmente esvaziar o carrinho?</div>
+        <button type="button" class="cart-buttons botao-desabilitado" id="cart-popup-cancel">Cancelar</button>
+        <button type="button" class="cart-buttons botao-desabilitado" id="cart-popup-empty">Esvaziar Carrinho</button>
+      </div>
+    </div>
+  </div>
+  <div id="conteudo-compra">
+    <div id="items-compra">
+      <div class="titulo-secao">
+        <div class="titulo-texto" id="titulo-itens">Loja</div>
+      </div>
+      <div id="produtos">
+        <div class="filtros">
+          <div class="campo campo-3 filtro-categoria">
+            <label>Categoria:</label>
+            <select id="categoria">
+              <option selected>Todos</option>
+            </select>
+          </div>
+        </div>
+        <div class="produtos-carregados"></div>
+      </div>
+    </div>
+  </div>
+  <div id="popup-sucsess" title="Pedido Enviado">
+    <div class="popup-sucsess-front">
+      <div class="popup-sucsess-title">Pedido Enviado</div>
+      <hr class="popup-sucsess-line" />
+      <div class="popup-sucsess-message">Pedido enviado com sucesso!</div>
+      <button class="popup-sucsess-ok">OK</button>
+    </div>
+  </div>
+  <script type="text/javascript" src="../plugins/jquery.min.js"></script>
+  <script type="text/javascript" src="../scripts/min.js/vendas.min.js"></script>
+</body>
+</html>

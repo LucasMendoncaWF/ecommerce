@@ -1,0 +1,21 @@
+{
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-csso": "^3.0.1",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "gulp-uglify": "^3.0.1",
+    "gulp.spritesmith": "^6.9.0",
+    "merge-stream": "^1.0.1",
+    "typescript": "^3.1.1",
+    "typings": "^2.1.0",
+    "vinyl-buffer": "^1.0.1"
+  },
+  "dependencies": {
+    "@types/jquery": "^3.3.10",
+    "emailjs-com": "^2.2.4"
+  }
+}
