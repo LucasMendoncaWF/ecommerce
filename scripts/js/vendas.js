@@ -83,7 +83,8 @@ var sellItems = function () {
         var index = 0;
         $.ajax({
             url: "http://lucasmendoncapportfolio.atwebpages.com/json/produtos.json", success: function (produtosEncontrados) {
-                var produtos = produtosEncontrados["Produtos"];
+                var produtosObj = JSON.parse(produtosEncontrados);
+                var produtos = produtosObj["Produtos"];
                 for (var _i = 0, produtos_1 = produtos; _i < produtos_1.length; _i++) {
                     var productData = produtos_1[_i];
                     var imagem = productData.ImageSrc != '' ? productData.ImageSrc : '../images/itemdefault.png';
@@ -93,7 +94,7 @@ var sellItems = function () {
                     htmlProdutos = "<div class='product' category='" + productData.Category + "'>               \n                  <div class='product-image' style=\"background-color:" + bgColor + ";background-image:url('" + imagem + "')\"></div>\n                  <div class='product-data'>\n                   <div class='product-name'>" + productData.Title + "</div>\n                   <div class='product-price'>R$" + numberToReal(productData.Price) + "</div>\n                  </div>\n                  <div class='product-button'><img class='cart-icone-add' src='../images/cart.png'/></div>\n                  <div class='product-fade'>\n                    <div class='popup-qtd'>\n                      <label>Quantidade</label>\n                      <input type='number' min='1' class='qtd-produtosQtd-product' value='0'/>\n                      <div class='error-add'>Por favor, digite um n\u00FAmero maior que 0</div>\n                      <button class='add-to-cart' type='button' product-index='" + index + "'>Adicionar ao Carrinho</button>\n                    </div>\n                    <div class='product-fade-circle'></div>\n                  </div>\n                </div>";
                     index++;
                     $('.produtos-carregados').append(htmlProdutos);
-                    if (index == produtosEncontrados.length) {
+                    if (index == produtos.length) {
                         addToCart();
                     }
                 }

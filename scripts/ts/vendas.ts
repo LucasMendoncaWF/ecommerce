@@ -97,7 +97,8 @@ let sellItems = () => {
     let index = 0;
     $.ajax({
       url: "http://lucasmendoncapportfolio.atwebpages.com/json/produtos.json", success: (produtosEncontrados) => {
-        let produtos: Produto[] = produtosEncontrados["Produtos"];
+        let produtosObj = JSON.parse(produtosEncontrados)
+        let produtos: Produto[] = produtosObj["Produtos"];
         for (let productData of produtos) {
           let imagem = productData.ImageSrc != '' ? productData.ImageSrc : '../images/itemdefault.png';
           let bgColor = productData.BgColor != '' ? productData.BgColor : '#fff';
@@ -122,7 +123,7 @@ let sellItems = () => {
                 </div>`;
           index++;
           $('.produtos-carregados').append(htmlProdutos);
-          if (index == produtosEncontrados.length) {
+          if (index == produtos.length) {
             addToCart();
           }
         }
@@ -200,7 +201,7 @@ let sellItems = () => {
           if ($('.cart-item').length == 1) { $('.cart-circle ').toggle(); }
           elemPai.detach();
         });
-
+        //Caclula o valor total do carrinho
         let valorTotal = 0;
         let cartItem = $('.cart-item');
         for (let item = 0; item < cartItem.length; item++) {
@@ -245,20 +246,20 @@ let sellItems = () => {
   }
   //Botoões do carrinho
   $('.cart-buttons').prop('disabled', true);
-
+  //Finaliza a compra
   $('#cart-finish').click((e) => {
     $('#popup-sucsess').show();
     $('.cart-item').detach();
     mostraEscondeCarrinho();
     setTimeout(function () { $('.loading').hide(); $('.popup-sucsess-ok, .popup-sucsess-message').show(); }, 3000);
   });
-
+  //Esvazia o carrinho e o fecha
   $('#cart-empty').click((e) => {
     $('.cart-item').detach();
     mostraEscondeCarrinho();
     $('.cart-circle').hide();
   });
-
+  //recarrega a página
   $('.popup-sucsess-ok').click((e) => {
     e.preventDefault();
     location.reload();
