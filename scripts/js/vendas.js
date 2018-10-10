@@ -161,6 +161,7 @@ var sellItems = function () {
                     }
                     elemPai.detach();
                 });
+                //Caclula o valor total do carrinho
                 var valorTotal = 0;
                 var cartItem = $('.cart-item');
                 for (var item = 0; item < cartItem.length; item++) {
@@ -205,17 +206,20 @@ var sellItems = function () {
     };
     //Botoões do carrinho
     $('.cart-buttons').prop('disabled', true);
+    //Finaliza a compra
     $('#cart-finish').click(function (e) {
         $('#popup-sucsess').show();
         $('.cart-item').detach();
         mostraEscondeCarrinho();
         setTimeout(function () { $('.loading').hide(); $('.popup-sucsess-ok, .popup-sucsess-message').show(); }, 3000);
     });
+    //Esvazia o carrinho e o fecha
     $('#cart-empty').click(function (e) {
         $('.cart-item').detach();
         mostraEscondeCarrinho();
         $('.cart-circle').hide();
     });
+    //recarrega a página
     $('.popup-sucsess-ok').click(function (e) {
         e.preventDefault();
         location.reload();
